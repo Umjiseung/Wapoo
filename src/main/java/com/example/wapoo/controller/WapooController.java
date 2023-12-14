@@ -2,7 +2,6 @@ package com.example.wapoo.controller;
 
 import com.example.wapoo.data.dto.request.LocationRegisterRequest;
 import com.example.wapoo.data.dto.request.StateUpdateRequest;
-import com.example.wapoo.data.dto.response.LocationOfGenderGetsResponse;
 import com.example.wapoo.data.dto.response.LocationRegisterResponse;
 import com.example.wapoo.data.entity.Gender;
 import com.example.wapoo.service.WapooService;
@@ -26,7 +25,7 @@ public class WapooController {
     }
 
     @GetMapping("/{gender}")
-    public ResponseEntity<List<LocationOfGenderGetsResponse>> locationOfGenderGets(@PathVariable Gender gender) {
+    public ResponseEntity<Integer> locationOfGenderGets(@PathVariable Gender gender) {
         wapooService.locationOfGenderGets(gender);
         return new ResponseEntity<>(HttpStatus.OK);
     }
