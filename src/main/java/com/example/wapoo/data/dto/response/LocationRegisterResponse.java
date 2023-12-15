@@ -1,5 +1,7 @@
 package com.example.wapoo.data.dto.response;
 
+import com.example.wapoo.data.entity.Gender;
+import com.example.wapoo.data.entity.Location;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -7,12 +9,14 @@ import lombok.NoArgsConstructor;
 @Getter
 public class LocationRegisterResponse {
     private Long id;
-    private String location;
-    private Boolean state;
+    private Location location;
+    private Integer state;
+    private Gender gender;
 
-    public LocationRegisterResponse(Long id, String location, Boolean state) {
+    public LocationRegisterResponse(Long id, Location location, Integer state, Gender gender) {
         this.id = id;
         this.location = location;
         this.state = state;
+        this.gender = gender;
     }
 }

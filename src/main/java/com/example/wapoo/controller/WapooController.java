@@ -4,16 +4,16 @@ import com.example.wapoo.data.dto.request.LocationRegisterRequest;
 import com.example.wapoo.data.dto.request.StateUpdateRequest;
 import com.example.wapoo.data.dto.response.LocationRegisterResponse;
 import com.example.wapoo.data.entity.Gender;
+import com.example.wapoo.data.entity.Location;
 import com.example.wapoo.service.WapooService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-
 @RestController
 @RequiredArgsConstructor
+@RequestMapping("/wapoo")
 public class WapooController {
 
     private final WapooService wapooService;
@@ -24,9 +24,9 @@ public class WapooController {
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
-    @GetMapping("/{gender}")
-    public ResponseEntity<Integer> locationOfGenderGets(@PathVariable Gender gender) {
-        wapooService.locationOfGenderGets(gender);
+    @GetMapping("/{floor}/{location}")
+    public ResponseEntity<Integer> locationGet(@PathVariable Gender gender, @PathVariable Location location) {
+        wapooService.locationGet(gender,location);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
