@@ -6,9 +6,11 @@ import lombok.NoArgsConstructor;
 
 @Getter
 @NoArgsConstructor
-public class StateUpdateRequest {
+public class LocationUpdateRequest {
+
     @NotBlank
     private Long id;
     @NotBlank
     private Integer state;
+
 }

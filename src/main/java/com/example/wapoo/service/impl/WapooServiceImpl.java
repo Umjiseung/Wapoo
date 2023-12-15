@@ -1,7 +1,11 @@
 package com.example.wapoo.service.impl;
 
 import com.example.wapoo.data.dto.request.LocationRegisterRequest;
+import com.example.wapoo.data.dto.request.LocationUpdateRequest;
+import com.example.wapoo.data.dto.response.LocationGetResponse;
 import com.example.wapoo.data.dto.response.LocationRegisterResponse;
+import com.example.wapoo.data.dto.response.LocationUpdateResponse;
+import com.example.wapoo.data.entity.Floor;
 import com.example.wapoo.data.entity.Gender;
 import com.example.wapoo.data.entity.Location;
 import com.example.wapoo.data.entity.Wapoo;
@@ -23,7 +27,7 @@ public class WapooServiceImpl implements WapooService {
     public LocationRegisterResponse locationRegister(LocationRegisterRequest request) {
 
         Wapoo wapoo = Wapoo.builder()
-                .id(request.getId())
+                .floor(request.getFloor())
                 .location(request.getLocation())
                 .state(request.getState())
                 .gender(request.getGender())
@@ -39,8 +43,26 @@ public class WapooServiceImpl implements WapooService {
 
     @Override
     @Transactional(rollbackFor = {RuntimeException.class},readOnly = true)
-    public Integer locationGet(Gender gender, Location location){
+    public LocationGetResponse locationGet(Location location,Floor floor){
 
+        return new LocationGetResponse(
+
+        );
+    }
+
+    @Override
+    @Transactional(rollbackFor = {RuntimeException.class})
+    public LocationUpdateResponse locationUpdate(LocationUpdateRequest request) {
+        Wapoo wapoo = wapooRepository.findById(request.getId())
+                .orElseThrow(IllegalAccessError::new);
+        wapoo.setState(request.getState());
+        return new LocationUpdateResponse(
+                wapoo.getId(),
+                wapoo.getState(),
+                wapoo.getLocation(),
+                wapoo.getFloor(),
+                wapoo.getGender()
+        );
     }
 
 }

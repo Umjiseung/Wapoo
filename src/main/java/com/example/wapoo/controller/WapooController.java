@@ -1,8 +1,11 @@
 package com.example.wapoo.controller;
 
 import com.example.wapoo.data.dto.request.LocationRegisterRequest;
-import com.example.wapoo.data.dto.request.StateUpdateRequest;
+import com.example.wapoo.data.dto.request.LocationUpdateRequest;
+import com.example.wapoo.data.dto.response.LocationGetResponse;
 import com.example.wapoo.data.dto.response.LocationRegisterResponse;
+import com.example.wapoo.data.dto.response.LocationUpdateResponse;
+import com.example.wapoo.data.entity.Floor;
 import com.example.wapoo.data.entity.Gender;
 import com.example.wapoo.data.entity.Location;
 import com.example.wapoo.service.WapooService;
@@ -24,16 +27,16 @@ public class WapooController {
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
-    @GetMapping("/{floor}/{location}")
-    public ResponseEntity<Integer> locationGet(@PathVariable Gender gender, @PathVariable Location location) {
-        wapooService.locationGet(gender,location);
+    @GetMapping
+    public ResponseEntity<LocationGetResponse> locationGet(@RequestParam("location") Location location, @RequestParam("floor") Floor floor) {
+        wapooService.locationGet(location,floor);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
     @PatchMapping
-    public ResponseEntity<String> stateUpdate(@RequestBody StateUpdateRequest stateUpdateRequest) {
-        wapooService.stateUpdate(stateUpdateRequest);
-        return ResponseEntity.ok("업데이트 되었습니다.");
+    public ResponseEntity<LocationUpdateResponse> stateUpdate(@RequestBody LocationUpdateRequest locationUpdateRequest) {
+        wapooService.locationUpdate(locationUpdateRequest);
+        return new ResponseEntity<>(HttpStatus.RESET_CONTENT);
     }
 
 }
