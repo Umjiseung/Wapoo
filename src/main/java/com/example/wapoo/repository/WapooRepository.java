@@ -10,5 +10,5 @@ import java.util.List;
 
 
 public interface WapooRepository extends JpaRepository<Wapoo,Long> {
-    List<Wapoo> findByLocationAndFloorAndGender(Location location, Floor floor, Gender gender);
+    Wapoo findByLocationAndFloorAndGender(Location location, Floor floor, Gender gender);
 }

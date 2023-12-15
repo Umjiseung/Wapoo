@@ -7,7 +7,6 @@ import lombok.NoArgsConstructor;
 @Getter
 @NoArgsConstructor
 public class LocationUpdateRequest {
-
     @NotBlank
     private Long id;
     @NotBlank

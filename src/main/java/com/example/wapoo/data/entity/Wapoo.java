@@ -1,5 +1,6 @@
 package com.example.wapoo.data.entity;
 
+import com.example.wapoo.data.dto.request.LocationUpdateRequest;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -31,4 +32,8 @@ public class Wapoo {
     @Enumerated(EnumType.STRING)
     @Column(name = "wapoo_gender", nullable = false)
     private Gender gender;
+
+    public void update(Integer state) {
+        this.state = state;
+    }
 }

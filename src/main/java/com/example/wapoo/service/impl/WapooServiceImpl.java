@@ -4,7 +4,6 @@ import com.example.wapoo.data.dto.request.LocationRegisterRequest;
 import com.example.wapoo.data.dto.request.LocationUpdateRequest;
 import com.example.wapoo.data.dto.response.LocationGetResponse;
 import com.example.wapoo.data.dto.response.LocationRegisterResponse;
-import com.example.wapoo.data.dto.response.LocationUpdateResponse;
 import com.example.wapoo.data.entity.Floor;
 import com.example.wapoo.data.entity.Gender;
 import com.example.wapoo.data.entity.Location;
@@ -15,7 +14,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-
 @Service
 @RequiredArgsConstructor
 public class WapooServiceImpl implements WapooService {
@@ -25,7 +23,6 @@ public class WapooServiceImpl implements WapooService {
     @Override
     @Transactional(rollbackFor = {RuntimeException.class})
     public LocationRegisterResponse locationRegister(LocationRegisterRequest request) {
-
         Wapoo wapoo = Wapoo.builder()
                 .floor(request.getFloor())
                 .location(request.getLocation())
@@ -44,25 +41,20 @@ public class WapooServiceImpl implements WapooService {
     @Override
     @Transactional(rollbackFor = {RuntimeException.class},readOnly = true)
     public LocationGetResponse locationGet(Location location,Floor floor){
-
+        Wapoo male = wapooRepository.findByLocationAndFloorAndGender(location,floor,Gender.MALE);
+        Wapoo female = wapooRepository.findByLocationAndFloorAndGender(location,floor,Gender.FEMALE);
         return new LocationGetResponse(
-
+                male.getState(),
+                female.getState()
         );
     }
 
     @Override
     @Transactional(rollbackFor = {RuntimeException.class})
-    public LocationUpdateResponse locationUpdate(LocationUpdateRequest request) {
+    public void locationUpdate(LocationUpdateRequest request) {
         Wapoo wapoo = wapooRepository.findById(request.getId())
-                .orElseThrow(IllegalAccessError::new);
-        wapoo.setState(request.getState());
-        return new LocationUpdateResponse(
-                wapoo.getId(),
-                wapoo.getState(),
-                wapoo.getLocation(),
-                wapoo.getFloor(),
-                wapoo.getGender()
-        );
+                .orElseThrow(IllegalArgumentException::new);
+        wapoo.update(request.getState());
     }
 
 }

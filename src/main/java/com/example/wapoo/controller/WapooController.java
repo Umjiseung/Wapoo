@@ -4,9 +4,7 @@ import com.example.wapoo.data.dto.request.LocationRegisterRequest;
 import com.example.wapoo.data.dto.request.LocationUpdateRequest;
 import com.example.wapoo.data.dto.response.LocationGetResponse;
 import com.example.wapoo.data.dto.response.LocationRegisterResponse;
-import com.example.wapoo.data.dto.response.LocationUpdateResponse;
 import com.example.wapoo.data.entity.Floor;
-import com.example.wapoo.data.entity.Gender;
 import com.example.wapoo.data.entity.Location;
 import com.example.wapoo.service.WapooService;
 import lombok.RequiredArgsConstructor;
@@ -23,18 +21,19 @@ public class WapooController {
 
     @PostMapping
     public ResponseEntity<LocationRegisterResponse> locationRegister(@RequestBody LocationRegisterRequest request) {
-        wapooService.locationRegister(request);
-        return new ResponseEntity<>(HttpStatus.CREATED);
+        return new ResponseEntity<>(wapooService.locationRegister(request), HttpStatus.CREATED);
     }
 
-    @GetMapping
-    public ResponseEntity<LocationGetResponse> locationGet(@RequestParam("location") Location location, @RequestParam("floor") Floor floor) {
-        wapooService.locationGet(location,floor);
-        return new ResponseEntity<>(HttpStatus.OK);
+    @GetMapping("/{location}/{floor}")
+    public ResponseEntity<LocationGetResponse> locationGet(
+            @PathVariable("location") Location location,
+            @PathVariable("floor") Floor floor
+            ) {
+        return ResponseEntity.ok(wapooService.locationGet(location,floor));
     }
 
     @PatchMapping
-    public ResponseEntity<LocationUpdateResponse> stateUpdate(@RequestBody LocationUpdateRequest locationUpdateRequest) {
+    public ResponseEntity<Void> stateUpdate(@RequestBody LocationUpdateRequest locationUpdateRequest) {
         wapooService.locationUpdate(locationUpdateRequest);
         return new ResponseEntity<>(HttpStatus.RESET_CONTENT);
     }
