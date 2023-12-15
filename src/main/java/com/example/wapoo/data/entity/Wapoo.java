@@ -21,10 +21,10 @@ public class Wapoo {
     private Long id;
 
     @Column(name = "wapoo_location",nullable = false)
-    private String location;
+    private Location location;
 
     @Column(name = "wapoo_state", nullable = false)
-    private Boolean state;
+    private Integer state;
 
     @Column(name = "wapoo_gender", nullable = false)
     private Gender gender;
@@ -33,5 +33,6 @@ public class Wapoo {
         this.id = updateRequest.getId();
         this.state = updateRequest.getState();
     }
+
 
 }

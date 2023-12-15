@@ -7,9 +7,5 @@ import com.example.wapoo.data.entity.Gender;
 
 public interface WapooService {
 
-    LocationRegisterResponse locationRegister(LocationRegisterRequest locationRegisterRequest);
 
-    Integer locationOfGenderGets(Gender gender);
-
-    void stateUpdate(StateUpdateRequest stateUpdateRequest);
 }
