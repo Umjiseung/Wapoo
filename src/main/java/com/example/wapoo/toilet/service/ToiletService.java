@@ -7,7 +7,7 @@ import com.example.wapoo.toilet.data.dto.response.LocationRegisterResponse;
 import com.example.wapoo.toilet.data.entity.Floor;
 import com.example.wapoo.toilet.data.entity.Location;
 
-public interface WapooService {
+public interface ToiletService {
 
     LocationRegisterResponse locationRegister(LocationRegisterRequest locationRegisterRequest);
     LocationGetResponse locationGet(Location location, Floor floor);

@@ -10,7 +10,7 @@ import lombok.*;
 @Setter
 @Builder
 @Table(name = "wapoo")
-public class Wapoo {
+public class Toilet {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "wapoo_id")

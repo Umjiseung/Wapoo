@@ -7,42 +7,42 @@ import com.example.wapoo.toilet.data.dto.response.LocationRegisterResponse;
 import com.example.wapoo.toilet.data.entity.Floor;
 import com.example.wapoo.toilet.data.entity.Gender;
 import com.example.wapoo.toilet.data.entity.Location;
-import com.example.wapoo.toilet.data.entity.Wapoo;
-import com.example.wapoo.toilet.repository.WapooRepository;
-import com.example.wapoo.toilet.service.WapooService;
+import com.example.wapoo.toilet.data.entity.Toilet;
+import com.example.wapoo.toilet.repository.ToiletRepository;
+import com.example.wapoo.toilet.service.ToiletService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @RequiredArgsConstructor
-public class WapooServiceImpl implements WapooService {
+public class ToiletServiceImpl implements ToiletService {
 
-    private final WapooRepository wapooRepository;
+    private final ToiletRepository toiletRepository;
 
     @Override
     @Transactional(rollbackFor = {RuntimeException.class})
     public LocationRegisterResponse locationRegister(LocationRegisterRequest request) {
-        Wapoo wapoo = Wapoo.builder()
+        Toilet toilet = Toilet.builder()
                 .floor(request.getFloor())
                 .location(request.getLocation())
                 .state(request.getState())
                 .gender(request.getGender())
                 .build();
-        wapooRepository.save(wapoo);
+        toiletRepository.save(toilet);
         return new LocationRegisterResponse(
-                wapoo.getId(),
-                wapoo.getLocation(),
-                wapoo.getState(),
-                wapoo.getGender()
+                toilet.getId(),
+                toilet.getLocation(),
+                toilet.getState(),
+                toilet.getGender()
         );
     }
 
     @Override
     @Transactional(rollbackFor = {RuntimeException.class},readOnly = true)
     public LocationGetResponse locationGet(Location location, Floor floor){
-        Wapoo male = wapooRepository.findByLocationAndFloorAndGender(location,floor, Gender.MALE);
-        Wapoo female = wapooRepository.findByLocationAndFloorAndGender(location,floor,Gender.FEMALE);
+        Toilet male = toiletRepository.findByLocationAndFloorAndGender(location,floor, Gender.MALE);
+        Toilet female = toiletRepository.findByLocationAndFloorAndGender(location,floor,Gender.FEMALE);
         return new LocationGetResponse(
                 male.getState(),
                 female.getState()
@@ -52,9 +52,9 @@ public class WapooServiceImpl implements WapooService {
     @Override
     @Transactional(rollbackFor = {RuntimeException.class})
     public void locationUpdate(LocationUpdateRequest request) {
-        Wapoo wapoo = wapooRepository.findById(request.getId())
+        Toilet toilet = toiletRepository.findById(request.getId())
                 .orElseThrow(IllegalArgumentException::new);
-        wapoo.update(request.getState());
+        toilet.update(request.getState());
     }
 
 }
