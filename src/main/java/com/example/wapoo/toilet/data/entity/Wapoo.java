@@ -1,6 +1,5 @@
-package com.example.wapoo.data.entity;
+package com.example.wapoo.toilet.data.entity;
 
-import com.example.wapoo.data.dto.request.LocationUpdateRequest;
 import jakarta.persistence.*;
 import lombok.*;
 

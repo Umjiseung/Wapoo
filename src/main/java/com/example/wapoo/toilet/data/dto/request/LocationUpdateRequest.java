@@ -1,4 +1,4 @@
-package com.example.wapoo.data.dto.request;
+package com.example.wapoo.toilet.data.dto.request;
 
 import jakarta.validation.constraints.NotBlank;
 import lombok.Getter;

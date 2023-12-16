@@ -1,15 +1,15 @@
-package com.example.wapoo.service.impl;
+package com.example.wapoo.toilet.service.impl;
 
-import com.example.wapoo.data.dto.request.LocationRegisterRequest;
-import com.example.wapoo.data.dto.request.LocationUpdateRequest;
-import com.example.wapoo.data.dto.response.LocationGetResponse;
-import com.example.wapoo.data.dto.response.LocationRegisterResponse;
-import com.example.wapoo.data.entity.Floor;
-import com.example.wapoo.data.entity.Gender;
-import com.example.wapoo.data.entity.Location;
-import com.example.wapoo.data.entity.Wapoo;
-import com.example.wapoo.repository.WapooRepository;
-import com.example.wapoo.service.WapooService;
+import com.example.wapoo.toilet.data.dto.request.LocationRegisterRequest;
+import com.example.wapoo.toilet.data.dto.request.LocationUpdateRequest;
+import com.example.wapoo.toilet.data.dto.response.LocationGetResponse;
+import com.example.wapoo.toilet.data.dto.response.LocationRegisterResponse;
+import com.example.wapoo.toilet.data.entity.Floor;
+import com.example.wapoo.toilet.data.entity.Gender;
+import com.example.wapoo.toilet.data.entity.Location;
+import com.example.wapoo.toilet.data.entity.Wapoo;
+import com.example.wapoo.toilet.repository.WapooRepository;
+import com.example.wapoo.toilet.service.WapooService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -40,8 +40,8 @@ public class WapooServiceImpl implements WapooService {
 
     @Override
     @Transactional(rollbackFor = {RuntimeException.class},readOnly = true)
-    public LocationGetResponse locationGet(Location location,Floor floor){
-        Wapoo male = wapooRepository.findByLocationAndFloorAndGender(location,floor,Gender.MALE);
+    public LocationGetResponse locationGet(Location location, Floor floor){
+        Wapoo male = wapooRepository.findByLocationAndFloorAndGender(location,floor, Gender.MALE);
         Wapoo female = wapooRepository.findByLocationAndFloorAndGender(location,floor,Gender.FEMALE);
         return new LocationGetResponse(
                 male.getState(),

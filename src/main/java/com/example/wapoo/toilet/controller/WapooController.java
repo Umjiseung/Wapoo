@@ -1,12 +1,12 @@
-package com.example.wapoo.controller;
+package com.example.wapoo.toilet.controller;
 
-import com.example.wapoo.data.dto.request.LocationRegisterRequest;
-import com.example.wapoo.data.dto.request.LocationUpdateRequest;
-import com.example.wapoo.data.dto.response.LocationGetResponse;
-import com.example.wapoo.data.dto.response.LocationRegisterResponse;
-import com.example.wapoo.data.entity.Floor;
-import com.example.wapoo.data.entity.Location;
-import com.example.wapoo.service.WapooService;
+import com.example.wapoo.toilet.data.dto.request.LocationRegisterRequest;
+import com.example.wapoo.toilet.data.dto.request.LocationUpdateRequest;
+import com.example.wapoo.toilet.data.dto.response.LocationGetResponse;
+import com.example.wapoo.toilet.data.dto.response.LocationRegisterResponse;
+import com.example.wapoo.toilet.data.entity.Floor;
+import com.example.wapoo.toilet.data.entity.Location;
+import com.example.wapoo.toilet.service.WapooService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
