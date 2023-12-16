@@ -22,6 +22,9 @@ public class Complain {
     @Column(name = "complain_title")
     private String title;
 
+    @Column(name = "complain_time")
+    private String time;
+
 
 
 }

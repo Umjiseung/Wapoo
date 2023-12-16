@@ -8,9 +8,11 @@ import lombok.NoArgsConstructor;
 public class ComplainGetsResponse {
     private Long id;
     private String title;
+    private String time;
 
-    public ComplainGetsResponse(Long id, String title) {
+    public ComplainGetsResponse(Long id, String title,String time) {
         this.id = id;
         this.title = title;
+        this.time = time;
     }
 }
