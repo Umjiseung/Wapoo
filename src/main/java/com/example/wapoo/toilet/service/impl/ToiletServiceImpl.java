@@ -11,10 +11,12 @@ import com.example.wapoo.toilet.data.entity.Toilet;
 import com.example.wapoo.toilet.repository.ToiletRepository;
 import com.example.wapoo.toilet.service.ToiletService;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 @Service
+@Slf4j
 @RequiredArgsConstructor
 public class ToiletServiceImpl implements ToiletService {
 
@@ -54,6 +56,7 @@ public class ToiletServiceImpl implements ToiletService {
     public void locationUpdate(LocationUpdateRequest request) {
         Toilet toilet = toiletRepository.findById(request.getId())
                 .orElseThrow(IllegalArgumentException::new);
+        log.info(String.valueOf(toilet.getId()));
         toilet.update(request.getState());
     }
 
