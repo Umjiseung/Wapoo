@@ -13,7 +13,6 @@ import lombok.*;
 public class Toilet {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "wapoo_id")
     private Long id;
 
     @Column(name = "wapoo_state", nullable = false)
