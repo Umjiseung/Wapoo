@@ -4,6 +4,7 @@ import com.example.wapoo.toilet.data.entity.Floor;
 import com.example.wapoo.toilet.data.entity.Gender;
 import com.example.wapoo.toilet.data.entity.Location;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -14,7 +15,7 @@ public class LocationRegisterRequest {
     private Location location;
     @NotBlank
     private Floor floor;
-    @NotBlank
+    @NotNull
     private Integer state;
     @NotBlank
     private Gender gender;
