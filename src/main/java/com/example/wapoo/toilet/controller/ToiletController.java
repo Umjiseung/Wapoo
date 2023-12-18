@@ -7,6 +7,7 @@ import com.example.wapoo.toilet.data.dto.response.LocationRegisterResponse;
 import com.example.wapoo.toilet.data.entity.Floor;
 import com.example.wapoo.toilet.data.entity.Location;
 import com.example.wapoo.toilet.service.ToiletService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -34,7 +35,7 @@ public class ToiletController {
     }
 
     @PatchMapping
-    public ResponseEntity<Void> stateUpdate(@RequestBody LocationUpdateRequest locationUpdateRequest) {
+    public ResponseEntity<Void> stateUpdate(@Valid @RequestBody LocationUpdateRequest locationUpdateRequest) {
         toiletService.locationUpdate(locationUpdateRequest);
         return new ResponseEntity<>(HttpStatus.RESET_CONTENT);
     }
