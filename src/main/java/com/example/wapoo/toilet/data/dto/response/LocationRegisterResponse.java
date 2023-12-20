@@ -1,5 +1,6 @@
 package com.example.wapoo.toilet.data.dto.response;
 
+import com.example.wapoo.toilet.data.enums.Floor;
 import com.example.wapoo.toilet.data.enums.Gender;
 import com.example.wapoo.toilet.data.enums.Location;
 import lombok.Getter;
@@ -10,13 +11,17 @@ import lombok.NoArgsConstructor;
 public class LocationRegisterResponse {
     private Long id;
     private Location location;
-    private Integer state;
+    private Floor floor;
     private Gender gender;
+    private Integer position;
+    private Boolean state;
 
-    public LocationRegisterResponse(Long id, Location location, Integer state, Gender gender) {
+    public LocationRegisterResponse(Long id, Location location, Floor floor, Gender gender, Integer position, Boolean state) {
         this.id = id;
         this.location = location;
-        this.state = state;
+        this.floor = floor;
         this.gender = gender;
+        this.position = position;
+        this.state = state;
     }
 }

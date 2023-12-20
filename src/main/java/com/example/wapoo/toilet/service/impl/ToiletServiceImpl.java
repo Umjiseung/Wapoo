@@ -15,6 +15,9 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Service
 @Slf4j
 @RequiredArgsConstructor
@@ -26,38 +29,43 @@ public class ToiletServiceImpl implements ToiletService {
     @Transactional(rollbackFor = {RuntimeException.class})
     public LocationRegisterResponse locationRegister(LocationRegisterRequest request) {
         Toilet toilet = Toilet.builder()
-                .floor(request.getFloor())
                 .location(request.getLocation())
-                .last(request.getState())
+                .floor(request.getFloor())
                 .gender(request.getGender())
+                .position(request.getPosition())
+                .state(request.getState())
                 .build();
         toiletRepository.save(toilet);
         return new LocationRegisterResponse(
                 toilet.getId(),
                 toilet.getLocation(),
-                toilet.getLast(),
-                toilet.getGender()
+                toilet.getFloor(),
+                toilet.getGender(),
+                toilet.getPosition(),
+                toilet.getState()
         );
     }
 
     @Override
     @Transactional(rollbackFor = {RuntimeException.class},readOnly = true)
-    public LocationGetResponse locationGet(Location location, Floor floor){
-        Toilet male = toiletRepository.findByLocationAndFloorAndGender(location,floor, Gender.MALE);
-        Toilet female = toiletRepository.findByLocationAndFloorAndGender(location,floor,Gender.FEMALE);
-        return new LocationGetResponse(
-                male.getLast(),
-                female.getLast()
-        );
+    public List<LocationGetResponse> locationGet(Location location, Floor floor,Gender gender){
+        List<Toilet> toilets = toiletRepository.findByLocationAndFloorAndGender(location,floor,gender);
+        List<LocationGetResponse> responses = new ArrayList<>();
+
+        for (Toilet toilet: toilets) {
+            responses.add(new LocationGetResponse(
+               toilet.getGender(),
+               toilet.getPosition(),
+               toilet.getState()
+            ));
+        }
+        return responses;
     }
 
     @Override
     @Transactional(rollbackFor = {RuntimeException.class})
     public void locationUpdate(LocationUpdateRequest request) {
-        Toilet toilet = toiletRepository.findById(request.getId())
-                .orElseThrow(IllegalArgumentException::new);
-        log.info(String.valueOf(toilet.getId()));
-        toilet.update(request.getState());
+
     }
 
 }

@@ -10,6 +10,8 @@ public class LocationUpdateRequest {
     @NotNull
     private Long id;
     @NotNull
-    private Integer state;
+    private Integer position;
+    @NotNull
+    private Boolean state;
 
 }

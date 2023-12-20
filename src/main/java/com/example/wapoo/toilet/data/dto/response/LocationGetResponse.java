@@ -1,16 +1,19 @@
 package com.example.wapoo.toilet.data.dto.response;
 
+import com.example.wapoo.toilet.data.enums.Gender;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 @Getter
 @NoArgsConstructor
 public class LocationGetResponse {
-    private Integer male;
-    private Integer female;
+    private Gender gender;
+    private Integer position;
+    private Boolean state;
 
-    public LocationGetResponse(Integer male, Integer female) {
-        this.male = male;
-        this.female = female;
+    public LocationGetResponse(Gender gender, Integer position, Boolean state) {
+        this.gender = gender;
+        this.position = position;
+        this.state = state;
     }
 }

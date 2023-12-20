@@ -18,9 +18,6 @@ public class Toilet {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "toilet_last", nullable = false)
-    private Integer last;
-
     @Enumerated(EnumType.STRING)
     @Column(name = "toilet_location",nullable = false)
     private Location location;
@@ -34,9 +31,8 @@ public class Toilet {
     private Gender gender;
 
     @Column(name = "toilet_position",nullable = false)
-    private Boolean position;
+    private Integer position;
 
-    public void update(Integer last) {
-        this.last = last;
-    }
+    @Column(name = "toilet_state",nullable = false)
+    private Boolean state;
 }

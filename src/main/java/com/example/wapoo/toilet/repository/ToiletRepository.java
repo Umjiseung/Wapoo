@@ -6,7 +6,9 @@ import com.example.wapoo.toilet.data.enums.Location;
 import com.example.wapoo.toilet.data.entity.Toilet;
 import org.springframework.data.jpa.repository.JpaRepository;
 
+import java.util.List;
+
 
 public interface ToiletRepository extends JpaRepository<Toilet,Long> {
-    Toilet findByLocationAndFloorAndGender(Location location, Floor floor, Gender gender);
+    List<Toilet> findByLocationAndFloorAndGender(Location location, Floor floor, Gender gender);
 }
