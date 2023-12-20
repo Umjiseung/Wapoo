@@ -7,9 +7,10 @@ import com.example.wapoo.toilet.data.entity.Toilet;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
+import java.util.Optional;
 
 
 public interface ToiletRepository extends JpaRepository<Toilet,Long> {
     List<Toilet> findByLocationAndFloor(Location location, Floor floor);
-    Toilet findByIdAndPosition(Long id,Integer position);
+    Toilet findByIdAndPosition(Long id, Integer position);
 }
