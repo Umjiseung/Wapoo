@@ -30,9 +30,7 @@ public class ToiletController {
     }
 
     @GetMapping("/{location}/{floor}")
-    public ResponseEntity<List<LocationGetResponse>> locationGet(
-            @PathVariable("location") Location location,
-            @PathVariable("floor") Floor floor) {
+    public ResponseEntity<List<LocationGetResponse>> locationGet(@PathVariable("location") Location location, @PathVariable("floor") Floor floor) {
         return ResponseEntity.ok(toiletService.locationGet(location,floor));
     }
 
