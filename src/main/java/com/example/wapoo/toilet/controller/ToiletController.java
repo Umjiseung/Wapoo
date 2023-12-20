@@ -29,13 +29,11 @@ public class ToiletController {
         return new ResponseEntity<>(toiletService.locationRegister(request), HttpStatus.CREATED);
     }
 
-    @GetMapping("/{location}/{floor}/{gender}")
+    @GetMapping("/{location}/{floor}")
     public ResponseEntity<List<LocationGetResponse>> locationGet(
             @PathVariable("location") Location location,
-            @PathVariable("floor") Floor floor,
-            @PathVariable("gender")Gender gender
-            ) {
-        return ResponseEntity.ok(toiletService.locationGet(location,floor,gender));
+            @PathVariable("floor") Floor floor) {
+        return ResponseEntity.ok(toiletService.locationGet(location,floor));
     }
 
     @PatchMapping

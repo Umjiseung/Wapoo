@@ -10,6 +10,6 @@ import java.util.List;
 
 
 public interface ToiletRepository extends JpaRepository<Toilet,Long> {
-    List<Toilet> findByLocationAndFloorAndGender(Location location, Floor floor, Gender gender);
+    List<Toilet> findByLocationAndFloor(Location location, Floor floor);
     Toilet findByIdAndPosition(Long id,Integer position);
 }

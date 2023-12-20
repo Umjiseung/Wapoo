@@ -13,6 +13,6 @@ import java.util.List;
 public interface ToiletService {
 
     LocationRegisterResponse locationRegister(LocationRegisterRequest locationRegisterRequest);
-    List<LocationGetResponse> locationGet(Location location, Floor floor, Gender gender);
+    List<LocationGetResponse> locationGet(Location location, Floor floor);
     void locationUpdate(LocationUpdateRequest locationUpdateRequest);
 }

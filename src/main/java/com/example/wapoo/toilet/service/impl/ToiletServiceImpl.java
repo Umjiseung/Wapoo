@@ -48,8 +48,8 @@ public class ToiletServiceImpl implements ToiletService {
 
     @Override
     @Transactional(rollbackFor = {RuntimeException.class},readOnly = true)
-    public List<LocationGetResponse> locationGet(Location location, Floor floor,Gender gender){
-        List<Toilet> toilets = toiletRepository.findByLocationAndFloorAndGender(location,floor,gender);
+    public List<LocationGetResponse> locationGet(Location location, Floor floor){
+        List<Toilet> toilets = toiletRepository.findByLocationAndFloor(location,floor);
         List<LocationGetResponse> responses = new ArrayList<>();
 
         for (Toilet toilet: toilets) {
