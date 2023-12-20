@@ -1,7 +1,7 @@
 package com.example.wapoo.toilet.data.dto.response;
 
-import com.example.wapoo.toilet.data.entity.Gender;
-import com.example.wapoo.toilet.data.entity.Location;
+import com.example.wapoo.toilet.data.enums.Gender;
+import com.example.wapoo.toilet.data.enums.Location;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 

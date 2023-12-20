@@ -4,9 +4,9 @@ import com.example.wapoo.toilet.data.dto.request.LocationRegisterRequest;
 import com.example.wapoo.toilet.data.dto.request.LocationUpdateRequest;
 import com.example.wapoo.toilet.data.dto.response.LocationGetResponse;
 import com.example.wapoo.toilet.data.dto.response.LocationRegisterResponse;
-import com.example.wapoo.toilet.data.entity.Floor;
-import com.example.wapoo.toilet.data.entity.Gender;
-import com.example.wapoo.toilet.data.entity.Location;
+import com.example.wapoo.toilet.data.enums.Floor;
+import com.example.wapoo.toilet.data.enums.Gender;
+import com.example.wapoo.toilet.data.enums.Location;
 import com.example.wapoo.toilet.data.entity.Toilet;
 import com.example.wapoo.toilet.repository.ToiletRepository;
 import com.example.wapoo.toilet.service.ToiletService;
@@ -28,14 +28,14 @@ public class ToiletServiceImpl implements ToiletService {
         Toilet toilet = Toilet.builder()
                 .floor(request.getFloor())
                 .location(request.getLocation())
-                .state(request.getState())
+                .last(request.getState())
                 .gender(request.getGender())
                 .build();
         toiletRepository.save(toilet);
         return new LocationRegisterResponse(
                 toilet.getId(),
                 toilet.getLocation(),
-                toilet.getState(),
+                toilet.getLast(),
                 toilet.getGender()
         );
     }
@@ -46,8 +46,8 @@ public class ToiletServiceImpl implements ToiletService {
         Toilet male = toiletRepository.findByLocationAndFloorAndGender(location,floor, Gender.MALE);
         Toilet female = toiletRepository.findByLocationAndFloorAndGender(location,floor,Gender.FEMALE);
         return new LocationGetResponse(
-                male.getState(),
-                female.getState()
+                male.getLast(),
+                female.getLast()
         );
     }
 

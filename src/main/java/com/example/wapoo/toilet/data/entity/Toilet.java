@@ -1,5 +1,8 @@
 package com.example.wapoo.toilet.data.entity;
 
+import com.example.wapoo.toilet.data.enums.Floor;
+import com.example.wapoo.toilet.data.enums.Gender;
+import com.example.wapoo.toilet.data.enums.Location;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -9,29 +12,31 @@ import lombok.*;
 @Getter
 @Setter
 @Builder
-@Table(name = "wapoo")
+@Table(name = "toilet")
 public class Toilet {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "wapoo_state", nullable = false)
-    private Integer state;
+    @Column(name = "toilet_last", nullable = false)
+    private Integer last;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "wapoo_location",nullable = false)
+    @Column(name = "toilet_location",nullable = false)
     private Location location;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "wapoo_floor",nullable = false)
+    @Column(name = "toilet_floor",nullable = false)
     private Floor floor;
 
-
     @Enumerated(EnumType.STRING)
-    @Column(name = "wapoo_gender", nullable = false)
+    @Column(name = "toilet_gender", nullable = false)
     private Gender gender;
 
-    public void update(Integer state) {
-        this.state = state;
+    @Column(name = "toilet_position",nullable = false)
+    private Boolean position;
+
+    public void update(Integer last) {
+        this.last = last;
     }
 }
