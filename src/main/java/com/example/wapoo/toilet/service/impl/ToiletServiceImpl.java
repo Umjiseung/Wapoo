@@ -65,7 +65,8 @@ public class ToiletServiceImpl implements ToiletService {
     @Override
     @Transactional(rollbackFor = {RuntimeException.class})
     public void locationUpdate(LocationUpdateRequest request) {
-
+        Toilet toilet = toiletRepository.findByIdAndPosition(request.getId(), request.getPosition());
+        toilet.update(request.getState());
     }
 
 }

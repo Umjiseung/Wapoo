@@ -35,4 +35,8 @@ public class Toilet {
 
     @Column(name = "toilet_state",nullable = false)
     private Boolean state;
+
+    public void update(Boolean state) {
+        this.state = state;
+    }
 }

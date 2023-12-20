@@ -4,21 +4,25 @@ package com.example.wapoo.toilet.data.dto.request;
 import com.example.wapoo.toilet.data.enums.Floor;
 import com.example.wapoo.toilet.data.enums.Gender;
 import com.example.wapoo.toilet.data.enums.Location;
-import jakarta.validation.constraints.NotBlank;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 @Getter
 @NoArgsConstructor
 public class LocationRegisterRequest {
-    @NotBlank
+    @NotNull
     private Location location;
-    @NotBlank
+    @NotNull
     private Floor floor;
-    @NotBlank
+    @NotNull
     private Gender gender;
-    @NotBlank
+
+    @NotNull
     private Integer position;
-    @NotBlank
+
+    @NotNull
+    @JsonProperty("state")
     private Boolean state;
 }
