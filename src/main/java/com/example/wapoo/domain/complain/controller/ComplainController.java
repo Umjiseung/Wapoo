@@ -13,6 +13,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/complain")
 @RequiredArgsConstructor
+@CrossOrigin
 public class ComplainController {
 
     private final ComplainService complainService;
