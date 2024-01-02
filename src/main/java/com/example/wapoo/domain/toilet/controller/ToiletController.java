@@ -17,7 +17,6 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
-@CrossOrigin
 @RequestMapping("/toilet")
 public class ToiletController {
 
