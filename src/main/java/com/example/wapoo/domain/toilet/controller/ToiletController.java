@@ -33,7 +33,7 @@ public class ToiletController {
         return ResponseEntity.ok(toiletService.locationGet(location,floor));
     }
 
-    @PutMapping
+    @PatchMapping
     public ResponseEntity<Void> stateUpdate(@Valid @RequestBody LocationUpdateRequest locationUpdateRequest) {
         toiletService.locationUpdate(locationUpdateRequest);
         return new ResponseEntity<>(HttpStatus.RESET_CONTENT);
